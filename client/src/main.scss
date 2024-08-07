@@ -1,0 +1,65 @@
+@use "./helpers/mixins" as m;
+@use "./helpers/variables" as v;
+
+@use "./components/navbar/navbar";
+@use "./pages/home/home";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  width: 100%;
+  height: auto;
+  min-height: 120vh;
+  font-family: v.$poppins;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  cursor: none;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="file"] {
+  cursor: none;
+}
+
+.Toastify__toast {
+  z-index: 99;
+}

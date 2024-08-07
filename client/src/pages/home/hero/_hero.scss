@@ -1,0 +1,118 @@
+@use "./../../../helpers/mixins" as m;
+@use "./../../../helpers/variables" as v;
+
+@mixin hero() {
+  width: 100%;
+  height: auto;
+  min-height: 80vh;
+  padding: 2.8% v.$p-horizontal-main 0;
+  display: grid;
+  grid-template-columns: 1fr 0.7fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "carousel search"
+    "carousel quote";
+  gap: 2vw;
+
+  &-carousel {
+    grid-area: carousel;
+    @include m.flex();
+    width: 100%;
+    height: auto;
+    --swiper-pagination-color: #fff;
+
+    &-container {
+      @include m.flex();
+      width: 100%;
+      height: 80vh;
+      max-height: auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 35%;
+        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+      }
+    }
+
+    .custom-next,
+    .custom-prev {
+      width: 2.8vw;
+      height: auto;
+      background-color: #fff;
+      border-radius: 50%;
+      @include m.flex();
+      color: map-get($map: v.$color, $key: "brown");
+      transition: 0.3s ease-out background-color, 0.3s ease-out border;
+      border: solid 0.2vw #fff;
+
+      &:hover {
+        background-color: transparent;
+        color: #fff;
+      }
+    }
+  }
+
+  &-search {
+    grid-area: search;
+    @include m.flex();
+    background-image: url("./assets/pexels-kaip-454509.jpg");
+    background-size: cover;
+    background-position: 50% 30%;
+    background-repeat: no-repeat;
+    @include m.flex($direction: column);
+
+    &-title {
+      font-size: 160%;
+      color: #fff;
+      font-weight: 700;
+      text-transform: capitalize;
+      text-shadow: 2px 2px 6px #000;
+    }
+
+    .wrapper {
+      width: 75%;
+      height: auto;
+      background-color: #fff;
+      @include m.flex($justify: flex-start);
+      padding: 1.6% 3.1%;
+      border-radius: 50vw;
+
+      &-input {
+        border: 0;
+        outline: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        color: rgba(0, 0, 0, 0.6);
+        // font-size: 88%;
+        line-height: 100%;
+
+        &::placeholder {
+          color: rgba(0, 0, 0, 0.6);
+        }
+      }
+
+      &-button {
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
+  }
+
+  &-quote {
+    grid-area: quote;
+    @include m.flex();
+    background-image: url("./assets/pexels-thanh-nguy-n-637271-1438524.jpg");
+    background-size: cover;
+    background-position: 50% 30%;
+    background-repeat: no-repeat;
+
+    &-text {
+      width: 85%;
+      color: #fff;
+      text-shadow: #000 1px 1px 6px;
+      text-align: center;
+    }
+  }
+}

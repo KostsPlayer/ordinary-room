@@ -1,0 +1,7 @@
+@use "./hero/hero" as hero;
+
+.home {
+  .hero {
+    @include hero.hero();
+  }
+}

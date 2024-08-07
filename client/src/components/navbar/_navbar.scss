@@ -1,0 +1,49 @@
+@use "./../../helpers/mixins" as m;
+@use "./../../helpers/variables" as v;
+
+.navbar {
+  width: 100%;
+  height: auto;
+  padding: 2.1% v.$p-horizontal-main 1.2%;
+  @include m.flex($justify: space-between);
+  border-bottom: 0.4vh solid map-get($map: v.$color, $key: "brown");
+
+  &-logo {
+    width: 12vw;
+    height: auto;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &-list {
+    width: fit-content;
+    @include m.flex();
+    gap: 1.4vw;
+
+    &-item {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 90%;
+      color: #000;
+      letter-spacing: 0.05vw;
+      transition: 0.4s ease-out padding-left, 0.4s ease-out padding-right,
+        0.3s ease-out color;
+      border-radius: 50vw;
+
+      &:hover {
+        color: map-get($map: v.$color, $key: "brown");
+      }
+
+      &.active {
+        padding: 0.6% 3.8%;
+        background-color: map-get($map: v.$color, $key: "brown");
+        font-weight: 600;
+        color: #fff;
+      }
+    }
+  }
+}
