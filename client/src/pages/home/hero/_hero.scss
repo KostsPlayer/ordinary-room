@@ -5,114 +5,119 @@
   width: 100%;
   height: auto;
   min-height: 80vh;
-  padding: 2.8% v.$p-horizontal-main 0;
-  display: grid;
-  grid-template-columns: 1fr 0.7fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas:
-    "carousel search"
-    "carousel quote";
-  gap: 2vw;
+  padding: 2.8% v.$p-horizontal-main;
+  background-color: map-get($map: v.$color, $key: "green");
+  position: relative;
 
-  &-carousel {
-    grid-area: carousel;
-    @include m.flex();
-    width: 100%;
+  &-categories {
+    width: fit-content;
     height: auto;
-    --swiper-pagination-color: #fff;
+    position: absolute;
+    bottom: -15vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    box-shadow: 4px 2px 30px rgba($color: #000, $alpha: 0.08),
+      -4px 2px 30px rgba($color: #000, $alpha: 0.08);
+    background-color: #fff;
+    border-radius: 0.4vw;
 
-    &-container {
-      @include m.flex();
-      width: 100%;
-      height: 80vh;
-      max-height: auto;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: 50% 35%;
-        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
-      }
-    }
-
-    .custom-next,
-    .custom-prev {
-      width: 2.8vw;
+    &-item {
+      width: 15vw;
+      min-height: 30vh;
       height: auto;
       background-color: #fff;
-      border-radius: 50%;
-      @include m.flex();
-      color: map-get($map: v.$color, $key: "brown");
-      transition: 0.3s ease-out background-color, 0.3s ease-out border;
-      border: solid 0.2vw #fff;
+      @include m.flex($direction: column);
+      z-index: 3;
+      gap: 0.3vh;
 
-      &:hover {
-        background-color: transparent;
-        color: #fff;
+      &:first-child {
+        border-top-left-radius: 0.4vw;
+        border-bottom-left-radius: 0.4vw;
       }
-    }
-  }
 
-  &-search {
-    grid-area: search;
-    @include m.flex();
-    background-image: url("./assets/pexels-kaip-454509.jpg");
-    background-size: cover;
-    background-position: 50% 30%;
-    background-repeat: no-repeat;
-    @include m.flex($direction: column);
+      &:last-child {
+        border-top-right-radius: 0.4vw;
+        border-bottom-right-radius: 0.4vw;
+      }
 
-    &-title {
-      font-size: 160%;
-      color: #fff;
-      font-weight: 700;
-      text-transform: capitalize;
-      text-shadow: 2px 2px 6px #000;
-    }
+      &.active {
+        z-index: 4;
+        position: relative;
 
-    .wrapper {
-      width: 75%;
-      height: auto;
-      background-color: #fff;
-      @include m.flex($justify: flex-start);
-      padding: 1.6% 3.1%;
-      border-radius: 50vw;
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          box-shadow: 2px 2px 20px rgba($color: #000, $alpha: 0.08),
+            -2px 2px 20px rgba($color: #000, $alpha: 0.08),
+            2px -2px 20px rgba($color: #000, $alpha: 0.08),
+            -2px -2px 20px rgba($color: #000, $alpha: 0.08);
+          border-radius: 0.4vw;
+          background-color: map-get($map: v.$color, $key: "navy");
+          transform: scaleX(1.1) scaleY(1.2);
+          z-index: -1;
+        }
 
-      &-input {
-        border: 0;
-        outline: 0;
-        width: 100%;
-        height: 100%;
-        background-color: transparent;
-        color: rgba(0, 0, 0, 0.6);
-        // font-size: 88%;
-        line-height: 100%;
+        .text {
+          color: #fff;
+        }
 
-        &::placeholder {
-          color: rgba(0, 0, 0, 0.6);
+        .go-detail {
+          margin-top: 3.2vh;
+          @include m.circle(2.6vw);
+          @include m.flex($direction: column);
+          gap: 0.3vh;
+          background-color: #fff;
+          cursor: pointer;
+
+          span {
+            width: 0.6vw;
+            height: 0.4vh;
+            background-color: map-get($map: v.$color, $key: "brown");
+            border-radius: 0.8vw;
+
+            &:first-child {
+              transform: rotate(45deg);
+            }
+
+            &:last-child {
+              transform: rotate(135deg);
+            }
+          }
         }
       }
 
-      &-button {
-        color: rgba(0, 0, 0, 0.6);
+      .icon {
+        color: map-get($map: v.$color, $key: "brown");
+      }
+
+      .text {
+        color: map-get($map: v.$color, $key: "navy");
+        font-family: v.$lato;
+        font-weight: 500;
+        cursor: pointer;
       }
     }
-  }
 
-  &-quote {
-    grid-area: quote;
-    @include m.flex();
-    background-image: url("./assets/pexels-thanh-nguy-n-637271-1438524.jpg");
-    background-size: cover;
-    background-position: 50% 30%;
-    background-repeat: no-repeat;
+    &-line {
+      width: 0.25vw;
+      height: auto;
+      position: relative;
 
-    &-text {
-      width: 85%;
-      color: #fff;
-      text-shadow: #000 1px 1px 6px;
-      text-align: center;
+      &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        height: 8vh;
+        transform: translateY(-50%);
+        border-radius: 2vw;
+        background-color: map-get($map: v.$color, $key: "brown");
+      }
     }
   }
 }

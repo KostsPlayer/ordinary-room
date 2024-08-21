@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "./../../assets/new-logo.png";
+import logo from "./../../assets/fix-logo2.png";
 
 function Navbar() {
   const location = useLocation();
@@ -17,9 +17,9 @@ function Navbar() {
   return (
     <>
       <div className="navbar">
-        <div className="navbar-logo">
+        <Link className="navbar-logo" to="/">
           <img src={logo} alt="logo" />
-        </div>
+        </Link>
         <div className="navbar-list">
           <Link
             className={`navbar-list-item ${
@@ -29,6 +29,15 @@ function Navbar() {
             onClick={() => handleActivedLink("/")}
           >
             home
+          </Link>
+          <Link
+            className={`navbar-list-item ${
+              activedLink === "/diaryku" ? "active" : ""
+            }`}
+            to="/"
+            onClick={() => handleActivedLink("/diaryku")}
+          >
+            diaryku
           </Link>
           <Link
             className={`navbar-list-item ${
@@ -50,12 +59,12 @@ function Navbar() {
           </Link>
           <Link
             className={`navbar-list-item ${
-              activedLink === "/diaryku" ? "active" : ""
+              activedLink === "/tips" ? "active" : ""
             }`}
             to="/"
-            onClick={() => handleActivedLink("/diaryku")}
+            onClick={() => handleActivedLink("/tips")}
           >
-            diaryku
+            tips
           </Link>
         </div>
       </div>

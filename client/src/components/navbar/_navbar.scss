@@ -4,9 +4,9 @@
 .navbar {
   width: 100%;
   height: auto;
-  padding: 2.1% v.$p-horizontal-main 1.2%;
-  @include m.flex($justify: space-between);
-  border-bottom: 0.4vh solid map-get($map: v.$color, $key: "brown");
+  padding: 2.1% v.$p-horizontal-main;
+  @include m.flex($direction: column);
+  // border-bottom: 0.4vh solid map-get($map: v.$color, $key: "brown");
 
   &-logo {
     width: 12vw;
